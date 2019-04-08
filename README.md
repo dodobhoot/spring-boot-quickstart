@@ -29,3 +29,10 @@
     * Scans all of your code looking for annotations to treat them the way they should be treated.
   * Starts Tomcat server
     * Starts the tomcat server.
+
+## Adding a Controller
+    * Basically adding a JAVA class
+    * Marked with annotations
+    * Has information about
+        * What URL access triggers it
+        * What method to run when accessed
