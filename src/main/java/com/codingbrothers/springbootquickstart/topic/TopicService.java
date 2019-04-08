@@ -1,5 +1,6 @@
 package com.codingbrothers.springbootquickstart.topic;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,40 +9,31 @@ import java.util.List;
 
 @Service
 public class TopicService {
-    private List<Topic> topics = new ArrayList<Topic>(Arrays.asList(
-            new Topic("Spring", "Spring Framework", "Spring Framework Description"),
-            new Topic("Java", "Core Java", "Core Java Description"),
-            new Topic("Javascript", "Javascript", "Javascript Description")
-    ));
 
+    @Autowired
+    TopicRepository topicRepository;
+    
     public List<Topic> getAllTopics() {
+        List<Topic> topics = new ArrayList<Topic>();
+        topicRepository.findAll()
+                .forEach(topics::add);
         return topics;
     }
 
     public Topic getTopic(String id) {
-        for (Topic topic : topics) {
-            if (topic.getId().equals(id)) {
-                return topic;
-            }
-        }
-        return null;
+        return topicRepository.findOne(id);
     }
 
     public void addTopic(Topic topic) {
-        topics.add(topic);
+        topicRepository.save(topic);
     }
 
     public void updateTopic(String id, Topic topic) {
-        for (int i = 0; i < topics.size(); i++) {
-            if (topics.get(i).getId().equals(topic.getId()))
-                topics.set(i, topic);
-        }
+        // If we have a topic with given id (as ID is the primary key) then it will update that
+        topicRepository.save(topic);
     }
 
     public void deleteTopic(String id) {
-        for (int i = 0; i < topics.size(); i++) {
-            if (topics.get(i).getId().equals(id))
-                topics.remove(i);
-        }
+        topicRepository.delete(id);
     }
 }
