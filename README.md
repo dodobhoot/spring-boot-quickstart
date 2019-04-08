@@ -36,3 +36,9 @@
   * Has information about
     * What URL access triggers it
     * What method to run when accessed
+
+## Embedded Tomcat Server
+  * Convenience
+  * Servlet container configuration is now application configuration
+  * Standalone application
+  * Useful for micro services architecture
