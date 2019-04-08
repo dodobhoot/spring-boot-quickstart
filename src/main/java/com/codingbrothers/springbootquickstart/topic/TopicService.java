@@ -12,7 +12,7 @@ public class TopicService {
 
     @Autowired
     TopicRepository topicRepository;
-    
+
     public List<Topic> getAllTopics() {
         List<Topic> topics = new ArrayList<Topic>();
         topicRepository.findAll()
